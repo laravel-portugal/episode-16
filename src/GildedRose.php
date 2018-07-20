@@ -41,37 +41,13 @@ class Item implements ShopItem {
     {
         $this->sellIn--;
 
-        if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if ($this->quality < 50) {
-                $this->quality = $this->quality + 1;
-                if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    if ($this->sellIn < 11) {
-                        if ($this->quality < 50) {
-                            $this->quality = $this->quality + 1;
-                        }
-                    }
-                    if ($this->sellIn < 6) {
-                        if ($this->quality < 50) {
-                            $this->quality = $this->quality + 1;
-                        }
-                    }
-                }
-            }
-
-            if ($this->sellIn < 0) {
-                if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    $this->quality = 0;
-                }
-            }
+        if ($this->sellIn < 0) {
+            $this->quality = $this->quality - 2;
         } else {
-            if ($this->sellIn < 0) {
-                $this->quality = $this->quality - 2;
-            } else {
-                $this->quality = $this->quality - 1;
-            }
-    
-            $this->quality = max($this->quality, 0);
+            $this->quality = $this->quality - 1;
         }
+
+        $this->quality = max($this->quality, 0);
     }
 
     public function __toString() 
@@ -99,6 +75,31 @@ class RefiningItem extends Item implements ShopItem {
             $this->quality = $this->quality + 1;
         }
 
+        $this->quality = min($this->quality, 50);
+    }
+
+}
+
+class ConcertTicketItem extends Item {
+
+    public function updateQuality() 
+    {
+        $this->sellIn--;
+        
+        switch(true) {
+            case $this->sellIn < 0:
+                $this->quality = 0;
+                break;
+            case $this->sellIn <= 5:
+                $this->quality = $this->quality + 3;
+                break;
+            case $this->sellIn <= 10:
+                $this->quality = $this->quality + 2;
+                break;
+            default:
+                $this->quality = $this->quality + 1;
+        }
+        
         $this->quality = min($this->quality, 50);
     }
 

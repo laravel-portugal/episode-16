@@ -29,7 +29,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
     function test_quality_never_drops_to_negative() {
         $items = [
             $itemA = new Item('Apple', 0, 0),
-            $itemB = new Item('Backstage passes to a TAFKAL80ETC concert', 0, 0),
+            $itemB = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 0, 0),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -76,7 +76,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_concert_tickets_increases_in_quality() {
         $items = [
-            $item = new Item('Backstage passes to a TAFKAL80ETC concert', 12, 10),
+            $item = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 12, 10),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -87,7 +87,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_concert_tickets_increases_in_quality_twice_as_fast_when_concert_date_is_less_than_or_10_days() {
         $items = [
-            $item = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 10),
+            $item = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 10, 10),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -98,7 +98,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_concert_tickets_increases_in_quality_thrice_as_fast_when_concert_date_is_less_than_or_5_days() {
         $items = [
-            $item = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 10),
+            $item = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 5, 10),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -109,8 +109,8 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_concert_tickets_quality_is_0_when_concert_date_has_passed() {
         $items = [
-            $itemA = new Item('Backstage passes to a TAFKAL80ETC concert', 0, 10),
-            $itemB = new Item('Backstage passes to a TAFKAL80ETC concert', -1, 10),
+            $itemA = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 0, 10),
+            $itemB = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', -1, 10),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -124,9 +124,9 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         $items = [
             $itemA = new RefiningItem('Aged Brie', 1, 50),
             $itemB = new RefiningItem('Aged Brie', 0, 50),
-            $itemC = new Item('Backstage passes to a TAFKAL80ETC concert', 15, 50),
-            $itemD = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 50),
-            $itemE = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 50),
+            $itemC = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 15, 50),
+            $itemD = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 10, 50),
+            $itemE = new ConcertTicketItem('Backstage passes to a TAFKAL80ETC concert', 5, 50),
         ];
 
         $gildedRose = new GildedRose($items);
