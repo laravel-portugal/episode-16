@@ -41,8 +41,8 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_sulfuras_never_drops_quality() {
         $items = [
-            $itemA = new Item('Sulfuras, Hand of Ragnaros', 0, 80),
-            $itemB = new Item('Sulfuras, Hand of Ragnaros', -1, 80),
+            $itemA = new LegendaryItem('Sulfuras, Hand of Ragnaros', 0, 80),
+            $itemB = new LegendaryItem('Sulfuras, Hand of Ragnaros', -1, 80),
         ];
 
         $gildedRose = new GildedRose($items);

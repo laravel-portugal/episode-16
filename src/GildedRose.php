@@ -18,7 +18,13 @@ class GildedRose {
 
 }
 
-class Item {
+interface ShopItem {
+
+    public function updateQuality();
+
+}
+
+class Item implements ShopItem {
 
     public $name;
     public $sellIn;
@@ -33,9 +39,7 @@ class Item {
 
     public function updateQuality()
     {
-        if ($this->name != 'Sulfuras, Hand of Ragnaros') {
-            $this->sellIn--;
-        }
+        $this->sellIn--;
 
         if ($this->name == 'Aged Brie' || $this->name == 'Backstage passes to a TAFKAL80ETC concert') {
             if ($this->quality < 50) {
@@ -66,15 +70,13 @@ class Item {
                 }
             }
         } else {
-            if ($this->name != 'Sulfuras, Hand of Ragnaros') {
-                if ($this->sellIn < 0) {
-                    $this->quality = $this->quality - 2;
-                } else {
-                    $this->quality = $this->quality - 1;
-                }
-        
-                $this->quality = max($this->quality, 0);
+            if ($this->sellIn < 0) {
+                $this->quality = $this->quality - 2;
+            } else {
+                $this->quality = $this->quality - 1;
             }
+    
+            $this->quality = max($this->quality, 0);
         }
     }
 
@@ -82,5 +84,11 @@ class Item {
     {
         return "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
+
+}
+
+class LegendaryItem extends Item implements ShopItem {
+
+    public function updateQuality() { }
 
 }
