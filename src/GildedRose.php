@@ -96,11 +96,27 @@ class ConcertTicketItem extends Item {
             case $this->sellIn <= 10:
                 $this->quality = $this->quality + 2;
                 break;
-            default:
+            default:  
                 $this->quality = $this->quality + 1;
         }
         
         $this->quality = min($this->quality, 50);
+    }
+
+}
+
+class ConjuredItem extends Item {
+
+    public function updateQuality() {
+        $this->sellIn--;
+        
+        if ($this->sellIn < 0) {
+            $this->quality = $this->quality - 4;
+        } else {
+            $this->quality = $this->quality - 2;
+        }
+
+        $this->quality = max($this->quality, 0);
     }
 
 }

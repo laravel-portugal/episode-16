@@ -139,26 +139,26 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         $this->assertEquals(50, $itemE->quality);
     }
 
-    // function test_conjured_items_quality_drops_twice_as_fast_each_day() {
-    //     $items = [
-    //         $itemA = new Item('Conjured Mana Cake', 5, 15),
-    //     ];
+    function test_conjured_items_quality_drops_twice_as_fast_each_day() {
+        $items = [
+            $itemA = new ConjuredItem('Conjured Mana Cake', 5, 15),
+        ];
 
-    //     $gildedRose = new GildedRose($items);
-    //     $gildedRose->onDayHasPassed();
+        $gildedRose = new GildedRose($items);
+        $gildedRose->onDayHasPassed();
 
-    //     $this->assertEquals(13, $itemA->quality);
-    // }
+        $this->assertEquals(13, $itemA->quality);
+    }
 
-    // function test_conjured_items_quality_drops_twice_as_fast_when_sell_date_is_0() {
-    //     $items = [
-    //         $itemA = new Item('Conjured Mana Cake', 0, 15),
-    //     ];
+    function test_conjured_items_quality_drops_twice_as_fast_when_sell_date_is_0() {
+        $items = [
+            $itemA = new ConjuredItem('Conjured Mana Cake', 0, 15),
+        ];
 
-    //     $gildedRose = new GildedRose($items);
-    //     $gildedRose->onDayHasPassed();
+        $gildedRose = new GildedRose($items);
+        $gildedRose->onDayHasPassed();
 
-    //     $this->assertEquals(11, $itemA->quality);
-    // }
+        $this->assertEquals(11, $itemA->quality);
+    }
 
 }
