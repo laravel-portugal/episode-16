@@ -10,7 +10,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(14, $itemA->quality);
     }
@@ -21,7 +21,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(13, $itemA->quality);
     }
@@ -33,7 +33,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(0, $itemA->quality);
         $this->assertEquals(0, $itemB->quality);
@@ -46,7 +46,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(80, $itemA->quality);
         $this->assertEquals(80, $itemB->quality);
@@ -58,7 +58,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(31, $item->quality);
     }
@@ -69,7 +69,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(32, $item->quality);
     }
@@ -80,7 +80,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(11, $item->quality);
     }
@@ -91,7 +91,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(12, $item->quality);
     }
@@ -102,7 +102,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(13, $item->quality);
     }
@@ -114,7 +114,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(0, $itemA->quality);
         $this->assertEquals(0, $itemB->quality);
@@ -130,7 +130,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
+        $gildedRose->onDayHasPassed();
 
         $this->assertEquals(50, $itemA->quality);
         $this->assertEquals(50, $itemB->quality);
@@ -145,7 +145,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
     //     ];
 
     //     $gildedRose = new GildedRose($items);
-    //     $gildedRose->updateQuality();
+    //     $gildedRose->onDayHasPassed();
 
     //     $this->assertEquals(13, $itemA->quality);
     // }
@@ -156,7 +156,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
     //     ];
 
     //     $gildedRose = new GildedRose($items);
-    //     $gildedRose->updateQuality();
+    //     $gildedRose->onDayHasPassed();
 
     //     $this->assertEquals(11, $itemA->quality);
     // }

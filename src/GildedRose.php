@@ -4,57 +4,15 @@ class GildedRose {
 
     private $items;
 
-    function __construct($items) {
+    function __construct($items) 
+    {
         $this->items = $items;
     }
 
-    function updateQuality() {
+    function onDayHasPassed() 
+    {
         foreach ($this->items as $item) {
-            if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality > 0) {
-                    if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                        $item->quality = $item->quality - 1;
-                    }
-                }
-            } else {
-                if ($item->quality < 50) {
-                    $item->quality = $item->quality + 1;
-                    if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->sellIn < 11) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                        if ($item->sellIn < 6) {
-                            if ($item->quality < 50) {
-                                $item->quality = $item->quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                $item->sellIn = $item->sellIn - 1;
-            }
-            
-            if ($item->sellIn < 0) {
-                if ($item->name != 'Aged Brie') {
-                    if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->quality > 0) {
-                            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                                $item->quality = $item->quality - 1;
-                            }
-                        }
-                    } else {
-                        $item->quality = $item->quality - $item->quality;
-                    }
-                } else {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
-                }
-            }
+            $item->updateQuality();
         }
     }
 
@@ -66,13 +24,64 @@ class Item {
     public $sellIn;
     public $quality;
 
-    function __construct($name, $sellIn, $quality) {
+    function __construct($name, $sellIn, $quality) 
+    {
         $this->name = $name;
         $this->sellIn = $sellIn;
         $this->quality = $quality;
     }
 
-    public function __toString() {
+    public function updateQuality() 
+    {
+        if ($this->name != 'Aged Brie' and $this->name != 'Backstage passes to a TAFKAL80ETC concert') {
+            if ($this->quality > 0) {
+                if ($this->name != 'Sulfuras, Hand of Ragnaros') {
+                    $this->quality = $this->quality - 1;
+                }
+            }
+        } else {
+            if ($this->quality < 50) {
+                $this->quality = $this->quality + 1;
+                if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
+                    if ($this->sellIn < 11) {
+                        if ($this->quality < 50) {
+                            $this->quality = $this->quality + 1;
+                        }
+                    }
+                    if ($this->sellIn < 6) {
+                        if ($this->quality < 50) {
+                            $this->quality = $this->quality + 1;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if ($this->name != 'Sulfuras, Hand of Ragnaros') {
+            $this->sellIn = $this->sellIn - 1;
+        }
+        
+        if ($this->sellIn < 0) {
+            if ($this->name != 'Aged Brie') {
+                if ($this->name != 'Backstage passes to a TAFKAL80ETC concert') {
+                    if ($this->quality > 0) {
+                        if ($this->name != 'Sulfuras, Hand of Ragnaros') {
+                            $this->quality = $this->quality - 1;
+                        }
+                    }
+                } else {
+                    $this->quality = $this->quality - $this->quality;
+                }
+            } else {
+                if ($this->quality < 50) {
+                    $this->quality = $this->quality + 1;
+                }
+            }
+        }
+    }
+
+    public function __toString() 
+    {
         return "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
 

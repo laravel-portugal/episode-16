@@ -33,5 +33,5 @@ for ($i = 0; $i < $days; $i++) {
     }
     echo PHP_EOL;
 
-    $app->updateQuality();
+    $app->onDayHasPassed();
 }
