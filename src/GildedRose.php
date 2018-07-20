@@ -41,7 +41,7 @@ class Item implements ShopItem {
     {
         $this->sellIn--;
 
-        if ($this->name == 'Aged Brie' || $this->name == 'Backstage passes to a TAFKAL80ETC concert') {
+        if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
             if ($this->quality < 50) {
                 $this->quality = $this->quality + 1;
                 if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -59,12 +59,6 @@ class Item implements ShopItem {
             }
 
             if ($this->sellIn < 0) {
-                if ($this->name == 'Aged Brie') {
-                    if ($this->quality < 50) {
-                        $this->quality = $this->quality + 1;
-                    }
-                }
-
                 if ($this->name == 'Backstage passes to a TAFKAL80ETC concert') {
                     $this->quality = 0;
                 }
@@ -90,5 +84,22 @@ class Item implements ShopItem {
 class LegendaryItem extends Item implements ShopItem {
 
     public function updateQuality() { }
+
+}
+
+class RefiningItem extends Item implements ShopItem {
+
+    public function updateQuality() 
+    {
+        $this->sellIn--;
+        
+        if ($this->sellIn < 0) {
+            $this->quality = $this->quality + 2;
+        } else {
+            $this->quality = $this->quality + 1;
+        }
+
+        $this->quality = min($this->quality, 50);
+    }
 
 }

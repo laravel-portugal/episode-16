@@ -54,7 +54,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_aged_brie_increases_in_quality() {
         $items = [
-            $item = new Item('Aged Brie', 4, 30),
+            $item = new RefiningItem('Aged Brie', 4, 30),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -65,7 +65,7 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_aged_brie_increases_in_quality_twice_as_fast_when_sell_date_is_0() {
         $items = [
-            $item = new Item('Aged Brie', 0, 30),
+            $item = new RefiningItem('Aged Brie', 0, 30),
         ];
 
         $gildedRose = new GildedRose($items);
@@ -122,8 +122,8 @@ class GildedRoseTest extends PHPUnit\Framework\TestCase {
 
     function test_quality_never_increases_more_than_50() {
         $items = [
-            $itemA = new Item('Aged Brie', 1, 50),
-            $itemB = new Item('Aged Brie', 0, 50),
+            $itemA = new RefiningItem('Aged Brie', 1, 50),
+            $itemB = new RefiningItem('Aged Brie', 0, 50),
             $itemC = new Item('Backstage passes to a TAFKAL80ETC concert', 15, 50),
             $itemD = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 50),
             $itemE = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 50),
