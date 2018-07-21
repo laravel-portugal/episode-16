@@ -26,6 +26,9 @@ interface ShopItem {
 
 class Item implements ShopItem {
 
+    const MAX_QUALITY = 50;
+    const MIN_QUALITY = 0;
+
     public $name;
     public $sellIn;
     public $quality;
@@ -67,8 +70,8 @@ class Item implements ShopItem {
     {
         $this->quality = $this->quality + $quality;
 
-        $this->quality = min($this->quality, 50);
-        $this->quality = max($this->quality, 0);
+        $this->quality = min($this->quality, self::MAX_QUALITY);
+        $this->quality = max($this->quality, self::MIN_QUALITY);
     }
 
 }
@@ -96,6 +99,9 @@ class RefiningItem extends Item implements ShopItem {
 
 class ConcertTicketItem extends Item {
 
+    const DAYS_DOUBLE_RATE = 10;
+    const DAYS_TRIPLE_RATE = 5;
+
     public function updateQuality() 
     {
         $this->onDayHasPassed();
@@ -104,10 +110,10 @@ class ConcertTicketItem extends Item {
             case $this->isExpired():
                 $this->quality = 0;
                 break;
-            case $this->sellIn <= 5:
+            case $this->sellIn <= self::DAYS_TRIPLE_RATE:
                 $this->addQuality(3);
                 break;
-            case $this->sellIn <= 10:
+            case $this->sellIn <= self::DAYS_DOUBLE_RATE:
                 $this->addQuality(2);
                 break;
             default:  
