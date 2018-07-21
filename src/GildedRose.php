@@ -46,12 +46,10 @@ class Item implements ShopItem {
         $this->onDayHasPassed();
 
         if ($this->isExpired()) {
-            $this->quality = $this->quality - 2;
+            $this->addQuality(-2);
         } else {
-            $this->quality = $this->quality - 1;
+            $this->addQuality(-1);
         }
-
-        $this->quality = max($this->quality, 0);
     }
 
     public function isExpired()
@@ -62,6 +60,14 @@ class Item implements ShopItem {
     public function onDayHasPassed()
     {
         $this->sellIn--;
+    }
+
+    public function addQuality($quality = 1)
+    {
+        $this->quality = $this->quality + $quality;
+
+        $this->quality = min($this->quality, 50);
+        $this->quality = max($this->quality, 0);
     }
 
     public function __toString() 
@@ -84,12 +90,10 @@ class RefiningItem extends Item implements ShopItem {
         $this->onDayHasPassed();
         
         if ($this->isExpired()) {
-            $this->quality = $this->quality + 2;
+            $this->addQuality(2);
         } else {
-            $this->quality = $this->quality + 1;
+            $this->addQuality(1);
         }
-
-        $this->quality = min($this->quality, 50);
     }
 
 }
@@ -105,16 +109,14 @@ class ConcertTicketItem extends Item {
                 $this->quality = 0;
                 break;
             case $this->sellIn <= 5:
-                $this->quality = $this->quality + 3;
+                $this->addQuality(3);
                 break;
             case $this->sellIn <= 10:
-                $this->quality = $this->quality + 2;
+                $this->addQuality(2);
                 break;
             default:  
-                $this->quality = $this->quality + 1;
+                $this->addQuality(1);
         }
-        
-        $this->quality = min($this->quality, 50);
     }
 
 }
@@ -125,12 +127,10 @@ class ConjuredItem extends Item {
         $this->onDayHasPassed();
         
         if ($this->isExpired()) {
-            $this->quality = $this->quality - 4;
+            $this->addQuality(-4);
         } else {
-            $this->quality = $this->quality - 2;
+            $this->addQuality(-2);
         }
-
-        $this->quality = max($this->quality, 0);
     }
 
 }
