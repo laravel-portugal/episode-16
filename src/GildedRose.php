@@ -9,7 +9,7 @@ class GildedRose {
         $this->items = $items;
     }
 
-    function onDayHasPassed() 
+    public function onDayHasPassed() 
     {
         foreach ($this->items as $item) {
             $item->updateQuality();
@@ -21,10 +21,6 @@ class GildedRose {
 interface ShopItem {
 
     public function updateQuality();
-
-    public function isExpired();
-
-    public function onDayHasPassed();
 
 }
 
@@ -52,27 +48,27 @@ class Item implements ShopItem {
         }
     }
 
-    public function isExpired()
+    public function __toString() 
+    {
+        return "{$this->name}, {$this->sellIn}, {$this->quality}";
+    }
+
+    protected function isExpired()
     {
         return $this->sellIn < 0;
     }
 
-    public function onDayHasPassed()
+    protected function onDayHasPassed()
     {
         $this->sellIn--;
     }
 
-    public function addQuality($quality = 1)
+    protected function addQuality($quality = 1)
     {
         $this->quality = $this->quality + $quality;
 
         $this->quality = min($this->quality, 50);
         $this->quality = max($this->quality, 0);
-    }
-
-    public function __toString() 
-    {
-        return "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
 
 }
@@ -123,7 +119,8 @@ class ConcertTicketItem extends Item {
 
 class ConjuredItem extends Item {
 
-    public function updateQuality() {
+    public function updateQuality() 
+    {
         $this->onDayHasPassed();
         
         if ($this->isExpired()) {
