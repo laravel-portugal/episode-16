@@ -22,6 +22,8 @@ interface ShopItem {
 
     public function updateQuality();
 
+    public function isExpired();
+
 }
 
 class Item implements ShopItem {
@@ -41,13 +43,18 @@ class Item implements ShopItem {
     {
         $this->sellIn--;
 
-        if ($this->sellIn < 0) {
+        if ($this->isExpired()) {
             $this->quality = $this->quality - 2;
         } else {
             $this->quality = $this->quality - 1;
         }
 
         $this->quality = max($this->quality, 0);
+    }
+
+    public function isExpired()
+    {
+        return $this->sellIn < 0;
     }
 
     public function __toString() 
@@ -69,7 +76,7 @@ class RefiningItem extends Item implements ShopItem {
     {
         $this->sellIn--;
         
-        if ($this->sellIn < 0) {
+        if ($this->isExpired()) {
             $this->quality = $this->quality + 2;
         } else {
             $this->quality = $this->quality + 1;
@@ -87,7 +94,7 @@ class ConcertTicketItem extends Item {
         $this->sellIn--;
         
         switch(true) {
-            case $this->sellIn < 0:
+            case $this->isExpired():
                 $this->quality = 0;
                 break;
             case $this->sellIn <= 5:
@@ -110,7 +117,7 @@ class ConjuredItem extends Item {
     public function updateQuality() {
         $this->sellIn--;
         
-        if ($this->sellIn < 0) {
+        if ($this->isExpired()) {
             $this->quality = $this->quality - 4;
         } else {
             $this->quality = $this->quality - 2;
